@@ -143,6 +143,7 @@ sub GetBiotypePriority {
         'regulatory_region' => 6, # A region of sequence that is involved in the control of a biological process
         'disrupted_domain' => 6, # Otherwise viable coding region omitted from this alternatively spliced transcript because the splice variation affects a region coding for a protein domain
         'processed_transcript' => 6, # Doesn't contain an ORF
+        'protein_coding_CDS_not_defined' => 6, # Transcript that belongs to a protein_coding gene and doesn't contain an ORF. Replaces the processed_transcript transcript biotype in protein_coding genes.
         'TEC' => 6, # To be Experimentally Confirmed. This is used for non-spliced EST clusters that have polyA features. This category has been specifically created for the ENCODE project to highlight regions that could indicate the presence of protein coding genes that require experimental validation, either by 5' RACE or RT-PCR to extend the transcripts, or by confirming expression of the putatively-encoded peptide with specific antibodies
         'TF_binding_site' => 7, # A region of a nucleotide molecule that binds a Transcription Factor or Transcription Factor complex
         'CTCF_binding_site' =>7, # A transcription factor binding site with consensus sequence CCGCGNGGNGGCAG, bound by CCCTF-binding factor
@@ -485,7 +486,7 @@ unless( $inhibit_vep ) {
     if( $species eq "homo_sapiens" ) {
         # Slight change in options if in offline mode, or if using the newer VEP
         $vep_cmd .= " --polyphen b" . ( $vep_script =~ m/vep$/ ? " --af" : " --gmaf" );
-        $vep_cmd .= ( $vep_script =~ m/vep$/ ? " --af_1kg --af_esp --af_gnomad" : " --maf_1kg --maf_esp" ) unless( $online );
+        $vep_cmd .= ( $vep_script =~ m/vep$/ ? " --af_1kg --af_gnomad" : " --maf_1kg --maf_esp" ) unless( $online );
     }
     # Do not use the --regulatory option in situations where we know it will break
     $vep_cmd .= " --regulatory" unless( $species eq "canis_familiaris" or $online );
