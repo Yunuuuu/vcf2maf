@@ -129,6 +129,7 @@ sub GetBiotypePriority {
         'bidirectional_promoter_lncRNA' => 3, # A non-coding locus that originates from within the promoter region of a protein-coding gene, with transcription proceeding in the opposite direction on the other strand
         'known_ncrna' => 4,
         'vaultRNA' => 4, # Short non coding RNA genes that form part of the vault ribonucleoprotein complex
+        'vault_RNA' => 4, # vaultRNA/vault_RNA: Short non coding RNA gene that forms part of the vault ribonucleoprotein complex
         'macro_lncRNA' => 4, # unspliced lncRNAs that are several kb in size
         'Mt_tRNA' => 4, # Non-coding RNA predicted using sequences from RFAM and miRBase
         'Mt_rRNA' => 4, # Non-coding RNA predicted using sequences from RFAM and miRBase
